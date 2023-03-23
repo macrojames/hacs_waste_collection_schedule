@@ -106,9 +106,11 @@ def main():
                     )
 
                 if args.list:
-                    for x in result:
+                    for x in sorted(result, key=lambda x: x.date):
                         icon_str = f" [{x.icon}]" if args.icon else ""
-                        print(f"    {x.date.isoformat()}: {x.type}{icon_str}")
+                        print(
+                            f"    {x.date.isoformat()} {x.date.strftime('%a')}: {x.type}{icon_str}"
+                        )
             except KeyboardInterrupt:
                 exit()
             except Exception as exc:
